@@ -1,17 +1,22 @@
 <script setup>
-
+import { RouterLink, RouterView } from 'vue-router'
+import Navigation from '@/components/Navbar.vue'
+import Footer from '@/components/Footer.vue'
 </script>
 
 <template>
-  <header>
+  <div class="container-fluid">
+    <header>
+      <Navigation />
+    </header>
 
-  </header>
+    <main>
+      <RouterView />
+    </main>
 
-  <main>
+    <footer class="sticky-top text-center p-1">
+      <Footer />
+    </footer>
+  </div>
 
-  </main>
-
-  <footer>
-
-  </footer>
 </template>
