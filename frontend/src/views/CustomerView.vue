@@ -1,10 +1,8 @@
 <script>
-import CustomerForm from '@/components/CustomerForm.vue'
-import CustomerTable from '@/components/CustomerTable.vue'
-import axios from 'axios';
+import CustomerForm from '@/components/CustomerForm.vue';
+import CustomerTable from '@/components/CustomerTable.vue';
 
 export default {
-    name: 'CustomerView',
     components: {
         CustomerForm,
         CustomerTable
@@ -28,10 +26,9 @@ export default {
         getAll() {
             fetch(`${this.baseUrl}/customerslist`, {
                 method: 'GET'
-            })
-                .then(response => response.json())
+            })                
                 .then(response => {
-                    this.customers = response.data;
+                    this.customers = response.data
                 });
         },
         saveCustomerHandler(customer) {
@@ -44,7 +41,7 @@ export default {
             })
                 .then(response => response.json())
                 .then(data => {
-                    data.status ? read() : alert(data.message);
+                    data.status ? this.getAll() : alert(data.message);
                 });
         }
     },
@@ -55,10 +52,7 @@ export default {
 </script>
 
 <template>
+    <CustomerForm @saveCustomer="saveCustomerHandler" />
 
-    <div>
-        <CustomerForm @saveCustomer="saveCustomerHandler" />
-        <CustomerTable />
-    </div>
-
+    <CustomerTable :customers="customers" />
 </template>

@@ -5,9 +5,7 @@ var router = express.Router();
 router.get('/customerslist', (req, res) => {
     let query = `SELECT * FROM customers`;
     conn.query(query, (err, results) => {
-        if (err) {
-            throw (err);
-        }
+        if (err) throw err
         res.writeHead(200, { 'Content-Type': 'text/html' });
         res.end(JSON.stringify(results));
     });
