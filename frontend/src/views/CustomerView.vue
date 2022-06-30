@@ -7,14 +7,34 @@ export default {
     components: {
         CustomerForm,
         CustomerTable
+    },
+    data() {
+        return {
+            baseUrl: 'http://localhost:3001',
+            customers: [],
+            form: {
+                fname: '',
+                lname: '',
+                address: '',
+                city: '',
+                zipcode: '',
+                country: '',
+                phonenumber: ''
+            }
+        };
+    },
+    methods: {
+        saveCustomerHandler(customer) {
+
+        }
     }
-}
+};
 </script>
 
 <template>
 
     <div>
-        <CustomerForm />
+        <CustomerForm @saveCustomer="saveCustomerHandler" />
         <CustomerTable />
     </div>
 
