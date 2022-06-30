@@ -2,7 +2,7 @@
 var express = require('express');
 var router = express.Router();
 
-router.post('/customers/add', (req, res) => {
+router.post('/customer/add', (req, res) => {
     let form = req.body;
     let cmd = 'INSERT INTO customers SET ?';
     conn.query(cmd, form, (err, result) => {
