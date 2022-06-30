@@ -2,7 +2,18 @@
 var express = require('express');
 var router = express.Router();
 
-router.post('/customers/add', (req, res) => {
+router.get('/customerslist', (req, res) => {
+    let query = `SELECT * FROM customers`;
+    conn.query(query, (err, results) => {
+        if (err) {
+            throw (err);
+        }
+        res.writeHead(200, { 'Content-Type': 'text/html' });
+        res.end(JSON.stringify(results));
+    });
+});
+
+router.post('/customersadd', (req, res) => {
     let form = req.body;
     let cmd = 'INSERT INTO customers SET ?';
     conn.query(cmd, form, (err, result) => {
@@ -20,3 +31,5 @@ router.post('/customers/add', (req, res) => {
         }
     });
 });
+
+module.exports = router;
