@@ -15,14 +15,7 @@ export default {
         };
     },
     methods: {
-        saveCustomer(customer) {
-            let nameVal = /^[a-zA-Z ]{2,30}$/;
-            let phoneVal = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
-            let zipVal = /^[0-9]{6}$/;
-            if (customer.fname || customer.lname != nameVal || customer.phonenumber != phoneVal || customer.zipcode != zipVal) {
-                alert("You entered incorrect data");
-                return;
-            }
+        saveCustomer() {
             this.$emit('saveCustomer', this.customer);
         }
     }
@@ -60,17 +53,17 @@ export default {
                     <div class="mb-3">
                         <label for="country">Country</label>
                         <input type="text" placeholder="Country" id="country" class="form-control w-50" required
-                            v-model="country">
+                            v-model="customer.country">
                     </div>
                     <div class="mb-3">
                         <label for="city">City</label>
                         <input type="text" placeholder="City" id="city" class="form-control w-50" required
-                            v-model="city">
+                            v-model="customer.city">
                     </div>
                     <div>
                         <label for="zipCode">Zip Code</label>
                         <input type="text" placeholder="Zip Code" id="zipCode" class="form-control w-50" required
-                            v-model="zipcode">
+                            v-model="customer.zipcode">
                     </div>
                 </div>
             </div>

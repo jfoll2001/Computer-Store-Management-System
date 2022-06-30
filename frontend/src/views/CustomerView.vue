@@ -23,8 +23,17 @@ export default {
             }
         };
     },
-    methods: {
+    methods: {       
         saveCustomerHandler(customer) {
+            fetch(`${this.baseUrl}/customer/add`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(customer)
+            })
+                .then(response => response.json())
+                .then(data => {
+                    data.status ? read() : alert(data.message);
+                });
 
         }
     }
