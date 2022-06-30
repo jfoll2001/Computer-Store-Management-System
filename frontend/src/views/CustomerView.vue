@@ -25,7 +25,7 @@ export default {
     },
     methods: {       
         saveCustomerHandler(customer) {
-            fetch(`${this.baseUrl}/customer/add`, {
+            fetch(`${this.baseUrl}/customers/add`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(customer)
