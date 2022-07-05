@@ -138,6 +138,7 @@ router.post('/ordersadd', (req, res) => {
     let form = req.body;
     let cmd = 'INSERT INTO orders SET ?';
     conn.query(cmd, form, (err, result) => {
+        console.log(form)
         if (err) {
             res.end(JSON.stringify({
                 status: false,
@@ -150,6 +151,37 @@ router.post('/ordersadd', (req, res) => {
                 status: true
             }));
         }
+    });
+});
+
+//Update Orders
+router.put('/updateorders/:id', (req, res) => {
+    let id = req.params.id;
+    let form = req.body;
+    let cmd = `UPDATE orders SET ? WHERE ordersid = ?`;
+    conn.query(cmd, [form, id], (err, results) => {
+        if (err) {
+            res.end(JSON.stringify({
+                status: false,
+                message: err.message
+            }));
+        }
+        else {
+            res.writeHead(200, { 'Content-Type': 'json' });
+            res.end(JSON.stringify({
+                status: true
+            }));
+        }
+    });
+});
+
+//Delete Orders
+router.delete('/deleteorders/:id', (req, res) => {
+    let id = req.params.id;
+    let cmd = 'DELETE FROM orders WHERE ordersid = ?';
+    conn.query(cmd, id, (err, result) => {
+        if (err) throw err;
+        res.end;
     });
 });
 

@@ -11,7 +11,7 @@ export default {
             }
         }
     },
-    props: ['customers, products'],
+    props: ['customers', 'products'],
     methods: {
         saveOrder() {
             this.$emit('saveOrder', this.order)
@@ -28,21 +28,24 @@ export default {
             <div class="col">
                 <div class="mb-3">
                     <label for="custName">Customer Name</label>
-                    <select id="custName" required class="form-control">
-                        <option v-for="customer in customers">{{ customer.fname }}</option>
+                    <select v-model="order.custname" id="custName" required class="form-control">
+                        <option v-for="customer in customers">{{ customer.fname }} {{ customer.lname }}</option>
                     </select>
                 </div>
                 <div class="mb-3">
                     <label for="productName">Product Name</label>
-                    <select name="" id="productName" required class="form-control"></select>
+                    <select v-model="order.prodname" id="productName" required class="form-control">
+                        <option v-for="product in products">{{ product.name }}</option>
+                    </select>
                 </div>
                 <div class="mb-3">
                     <label for="shipper">Shipper</label>
-                    <input type="text" placeholder="Shipper" required class="form-control" id="shipper">
+                    <input v-model="order.shipper" type="text" placeholder="Shipper" required class="form-control"
+                        id="shipper">
                 </div>
                 <div class="mb-3">
                     <label for="orderDate">Order Date</label>
-                    <input type="date" required class="form-control" id="orderDate">
+                    <input v-model="order.date" type="date" required class="form-control" id="orderDate">
                 </div>
                 <button @click="saveOrder" class="btn btn-primary w-100">Place Order</button>
             </div>

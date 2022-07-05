@@ -68,7 +68,6 @@ export default {
                 .then(data => {
                     data.status ? this.getAll() : alert(data.message);
                 });
-
         },
         deleteCustomerHandler(id) {
             fetch(`${this.baseUrl}/deletecustomers/${id}`, {
