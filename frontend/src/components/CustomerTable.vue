@@ -35,7 +35,7 @@ export default {
                         <td>{{ customer.address }}</td>
                         <td>{{ customer.city }}</td>
                         <td>
-                            <button class="btn btn-warning"
+                            <button class="btn btn-warning me-5"
                                 @click="$emit('editCustomer', customer.customersid, i)">Edit</button>
                             <button class="btn btn-danger"
                                 @click="$emit('deleteCustomer', customer.customersid, i)">Delete</button>
