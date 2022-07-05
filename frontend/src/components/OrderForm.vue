@@ -1,5 +1,22 @@
 <script>
-
+export default {
+    name: 'OrderForm',
+    data() {
+        return {
+            order: {
+                date: '',
+                shipper: '',
+                custname: '',
+                prodname: ''
+            }
+        }
+    },
+    methods: {
+        saveOrder() {
+            this.$emit('saveOrder', this.order)
+        }
+    }
+}
 </script>
 
 <template>
@@ -20,11 +37,11 @@
                     <label for="shipper">Shipper</label>
                     <input type="text" placeholder="Shipper" required class="form-control" id="shipper">
                 </div>
-                <div class="mb-3"> 
+                <div class="mb-3">
                     <label for="orderDate">Order Date</label>
                     <input type="date" required class="form-control" id="orderDate">
                 </div>
-                <button class="btn btn-primary w-25">Place Order</button>
+                <button @click="saveOrder" class="btn btn-primary w-100">Place Order</button>
             </div>
             <div class="col"></div>
         </form>

@@ -1,31 +1,35 @@
 <script >
-
+export default {
+    props: ['products']
+}
 </script>
 
 <template>
 
     <div>
-        <div class="row">
-            <div class="col text-center">
-                <form>
-                    <label for="searchProduct">Search Product</label>
-                    <input type="text" placeholder="Enter Product Name" id="searchProduct"
-                        class="form-control w-50 mb-3 mx-auto">
-                    <button class="btn btn-primary w-25 mb-5">Search</button>
-                </form>
-            </div>
-        </div>
-        <div>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Product Name</th>
-                        <th>Amount</th>
-                        <th>Price</th>
-                    </tr>
-                </thead>
-            </table>
-        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Product Name</th>
+                    <th>Amount</th>
+                    <th>Price</th>
+                    <th>Change Data</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="(product, i) in products" :key="i">
+                    <td>{{ product.name }}</td>
+                    <td>{{ product.amount }}</td>
+                    <td>{{ product.price }}</td>
+                    <td>
+                        <button class="btn btn-warning me-5"
+                            @click="$emit('editProduct', product.productsid, i)">Edit</button>
+                        <button class="btn btn-danger"
+                            @click="$emit('deleteProduct', product.productsid, i)">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 
 </template>
