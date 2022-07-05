@@ -11,6 +11,7 @@ export default {
             }
         }
     },
+    props: ['customers, products'],
     methods: {
         saveOrder() {
             this.$emit('saveOrder', this.order)
@@ -27,7 +28,9 @@ export default {
             <div class="col">
                 <div class="mb-3">
                     <label for="custName">Customer Name</label>
-                    <select name="" id="custName" required class="form-control"></select>
+                    <select id="custName" required class="form-control">
+                        <option v-for="customer in customers">{{ customer.fname }}</option>
+                    </select>
                 </div>
                 <div class="mb-3">
                     <label for="productName">Product Name</label>

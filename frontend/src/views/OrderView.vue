@@ -13,6 +13,8 @@ export default {
         return {
             baseUrl: 'http://localhost:3001',
             orders: [],
+            customers: [],
+            products: [],
             form: {
                 date: '',
                 shipper: '',
@@ -29,7 +31,7 @@ export default {
                 method: 'GET'
             })
                 .then(response => response.json())
-                .then(data => this.customers = data)
+                .then(data => this.orders = data)
 
             fetch(`${this.baseUrl}/customerslist`, {
                 method: 'GET'
@@ -41,7 +43,7 @@ export default {
                 method: 'GET'
             })
                 .then(response => response.json())
-                .then(data => this.customers = data)
+                .then(data => this.products = data)
         },
         saveOrderHandler() {
             fetch(`${this.baseUrl}/ordersadd`, {
@@ -56,12 +58,15 @@ export default {
                     data.status ? this.getAll() : alert(data.message);
                 });
         }
+    },
+    mounted() {
+        this.getAll();
     }
 }
 </script>
 
 <template>
-    <OrderForm @saveOrder="saveOrderHandler" />
+    <OrderForm @saveOrder="saveOrderHandler" :customers="customers" :products="products" />
     <OrderTable />
 
     <OrderModal>
